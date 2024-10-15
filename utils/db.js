@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb').MongoClient;
+const Mongo = require('mongodb');
 
 class DBClient {
   constructor() {
@@ -8,7 +8,7 @@ class DBClient {
     const url = `mongodb://${host}:${port}`;
 
     this.connected = false;
-    MongoClient.connect(url, { useUnifiedTopology: true }, (error, db) => {
+    Mongo.MongoClient.connect(url, { useUnifiedTopology: true }, (error, db) => {
       if (error) {
         console.error('Error connecting to MongoDB:', error);
         this.connected = false;
