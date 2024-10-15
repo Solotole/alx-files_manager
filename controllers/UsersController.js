@@ -1,6 +1,6 @@
+import dbClient from '../utils/db';
+
 const crypto = require('crypto');
-import dbClient from './../utils/db';
-// const dbClient = require('../utils/db');
 
 class UsersController {
   static async postNew(req, res) {
@@ -21,12 +21,12 @@ class UsersController {
       }
       const hashedPassword = crypto.createHash('sha1').update(password).digest('hex');
       const result = await dbClient.db.collection('users').insertOne({
-	email,
-	password: hashedPassword
+        email,
+        password: hashedPassword,
       });
       return res.status(201).json({
         id: result.insertedId,
-        email: email
+        email,
       });
     } catch (err) {
       return res.status(500).json({ error: `Server error ${err}` });
@@ -35,4 +35,3 @@ class UsersController {
 }
 
 module.exports = UsersController;
-
