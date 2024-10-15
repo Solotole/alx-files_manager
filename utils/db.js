@@ -1,4 +1,4 @@
-const MongoClient = require('mongodb').MongoClient;
+const { MongoClient } = require('mongodb').MongoClient;
 
 class DBClient {
   constructor() {
@@ -10,17 +10,17 @@ class DBClient {
     this.connected = false;
     MongoClient.connect(url, { useUnifiedTopology: true }, (error, db) => {
       if (error) {
-	console.error('Error connecting to MongoDB:', error);
-	this.connected = false;
+        console.error('Error connecting to MongoDB:', error);
+        this.connected = false;
       } else {
         this.db = db.db(database);
-	this.connected = true;	
+        this.connected = true;
       }
-    })
+    });
   }
 
   isAlive() {
-    return this.connected; 
+    return this.connected;
   }
 
   async nbUsers() {
