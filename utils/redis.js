@@ -1,4 +1,4 @@
-const redis = require("redis");
+const redis = require('redis');
 
 class RedisClient {
   constructor() {
@@ -22,7 +22,7 @@ class RedisClient {
         if (err) {
           return reject(err);
         }
-        resolve(value);
+        return resolve(value);
       });
     });
   }
@@ -33,7 +33,7 @@ class RedisClient {
         if (err) {
           return reject(err);
         }
-        resolve();
+        return resolve();
       });
     });
   }
@@ -44,7 +44,7 @@ class RedisClient {
         if (err) {
           return reject(err);
         }
-        resolve();
+        return resolve();
       });
     });
   }
