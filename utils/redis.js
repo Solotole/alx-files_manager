@@ -9,12 +9,13 @@ class RedisClient {
     // this.set = promisify(this.client.set).bind(this);
     // this.del = promisify(this.client.del).bind(this);
     this.client.on('error', (err) => {
-      console.log('Redis client error:', err);      
+      console.log('Redis client error:', err);
+      this.connected = false;
     });
-    this.connected = true;
-    // this.client.on('connect', () => {
     // this.connected = true;
-    // });
+    this.client.on('connect', () => {
+      this.connected = true;
+    });
   }
 
   isAlive() {
